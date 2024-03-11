@@ -9,7 +9,7 @@ const ArticlesList = () => {
     .then(({articles}) => {
       setArticles(articles);
     })
-  })
+  }, [])
 
   return (
     <div id="articles-list">
