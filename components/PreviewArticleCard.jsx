@@ -1,14 +1,11 @@
 import React from 'react';
-import { useNavigate } from 'react-router-dom';
+import { Button } from 'react-bootstrap';
+import { Link, useNavigate } from 'react-router-dom';
 
 const PreviewArticleCard = ({article}) => {
-  const navigate = useNavigate();
-  
-  const handleSubmit = (event) => {
-    navigate(`/articles/${event.target.value}`);
-  }
 
   const { article_id, topic, title, author, created_at, votes, article_img_url, comment_count } = article;
+  const fullArticleLink = `/articles/${article_id}`
 
   return (
     <div className= "preview-article-card">
@@ -19,9 +16,7 @@ const PreviewArticleCard = ({article}) => {
       <p>Votes: {votes}</p>
       <p>Created at: {created_at}</p>
       <p>Comments: {comment_count}</p>
-      <button value={article_id} onClick={handleSubmit}>
-        View full article
-      </button>
+      <Link to={fullArticleLink}><Button>View Full Article</Button></Link> 
     </div>
   );
 };
