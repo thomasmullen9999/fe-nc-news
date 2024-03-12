@@ -21,3 +21,11 @@ export const fetchCommentsByArticleId = (id) => {
     return response.data;
   })
 }
+
+export const changeVotesByArticleId = (id) => {
+  return newsApi.patch(`/articles/${id}`, {
+    inc_votes: 1
+  }).then((response) => {
+    return response.data;
+  })
+}
