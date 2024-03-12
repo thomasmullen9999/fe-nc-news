@@ -17,9 +17,6 @@ const PreviewArticleCard = ({article}) => {
       <p>Author: {author}</p>
       <img src={article_img_url} width="500"></img>
       <p>Votes: {votes}</p>
-      <button value={article_id}>
-        Add vote
-      </button>
       <p>Created at: {created_at}</p>
       <p>Comments: {comment_count}</p>
       <button value={article_id} onClick={handleSubmit}>
