@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import { fetchArticleById } from '../apis';
+import { fetchArticleById, fetchCommentsByArticleId } from '../apis';
+import CommentCard from './CommentCard';
 
 
 const SingleArticle = ({article}) => {
   const [currentArticle, setCurrentArticle] = useState([]);
+  const [comments, setComments] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const { id } = useParams();
   
@@ -14,6 +16,13 @@ const SingleArticle = ({article}) => {
     .then(({article}) => {
       setCurrentArticle(article);
       setIsLoading(false);
+    })
+  }, [id])
+
+  useEffect(() => {
+    fetchCommentsByArticleId(id)
+    .then(({comments}) => {
+      setComments(comments);
     })
   }, [id])
   
@@ -39,11 +48,16 @@ const SingleArticle = ({article}) => {
           Add vote
         </button>
         <p>Created at: {created_at}</p>
-        <p>Comments: {comment_count}</p>
-        <button value={article_id}>
-          View all comments
-        </button>
+        <div id="comments-section">
+          <h2>Comments ({comment_count})</h2>
+          <ul>
+            {comments.map((comment) => {
+              return <CommentCard comment = {comment} key = {comment.comment_id}/>
+            })}
+          </ul>
+        </div>
       </div>
+      
     );
   }
 };
