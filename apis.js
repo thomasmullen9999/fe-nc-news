@@ -10,8 +10,20 @@ export const fetchArticles = () => {
   })
 };
 
+export const fetchArticlesByTopic = (topic) => {
+  return newsApi.get(`/articles?topic=${topic}`).then((response) => {
+    return response.data;
+  })
+};
+
 export const fetchUsers = () => {
   return newsApi.get("/users").then((response) => {
+    return response.data;
+  })
+};
+
+export const fetchTopics = () => {
+  return newsApi.get("/topics").then((response) => {
     return response.data;
   })
 };

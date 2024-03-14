@@ -10,6 +10,7 @@ import { useState } from 'react'
 import { UserContext } from '../contexts/User'
 import ErrorPage from '../components/ErrorPage'
 import UsersList from '../components/UsersList'
+import TopicsList from '../components/TopicsList'
 
 function App() {
   const [loggedInUser, setLoggedInUser] = useState({
@@ -26,6 +27,7 @@ function App() {
         <Route path="/articles" element={<ArticlesList />} />
         <Route path="/articles/:id" element={<SingleArticle />} />
         <Route path="/users" element={<UsersList />} />
+        <Route path="/topics" element={<TopicsList />} />
         <Route path="*" element={<ErrorPage />} />
       </Routes>
       <Footer/>

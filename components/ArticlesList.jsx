@@ -1,10 +1,22 @@
 import React, { useEffect, useState } from 'react';
 import PreviewArticleCard from './PreviewArticleCard';
-import { fetchArticles } from '../apis';
+import { fetchArticles, fetchArticlesByTopic } from '../apis';
+import { useSearchParams } from 'react-router-dom';
 
 const ArticlesList = () => {
   const [articles, setArticles] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
+  const [searchParams, setSearchParams] = useSearchParams();
+
+  const topicQuery = searchParams.get("topic");
+  console.log(topicQuery)
+
+  useEffect(() => {
+    fetchArticlesByTopic(topicQuery).then(({articles}) => {
+      setArticles(articles);
+    });
+  }, [topicQuery]);
+
 
   useEffect(() => {
     setIsLoading(true);
@@ -14,6 +26,7 @@ const ArticlesList = () => {
       setIsLoading(false);
     })
   }, [])
+
 
   if (isLoading) {
     return (
