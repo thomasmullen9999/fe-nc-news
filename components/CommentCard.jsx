@@ -1,7 +1,7 @@
 import React from 'react';
 
 const CommentCard = ({comment}) => {
-  const { body, votes, author, created_at } = comment;
+  const { body, votes, author, created_at, comment_id } = comment;
 
   return (
     <div className="comment-card">

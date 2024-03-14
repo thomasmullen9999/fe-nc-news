@@ -38,10 +38,10 @@ const SingleArticle = ({article}) => {
   else {
     return (
       <article className= "single-article">
-        <h4>{title}</h4>
+        <h2>{title}</h2>
         <p>Topic: {topic}</p>
         <p>Author: {author}</p>
-        <img src={article_img_url} width="500"></img>
+        <img src={article_img_url} width="900"></img>
         <p>{body}</p>
         <p>Votes: {votes}</p>
         <button value={article_id} onClick={handleVoteClick}>

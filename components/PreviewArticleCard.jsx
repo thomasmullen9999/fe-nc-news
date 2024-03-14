@@ -9,10 +9,10 @@ const PreviewArticleCard = ({article}) => {
 
   return (
     <div className= "preview-article-card">
-      <h4>{title}</h4>
+      <h3>{title}</h3>
       <p>Topic: {topic}</p>
       <p>Author: {author}</p>
-      <img src={article_img_url} width="500"></img>
+      <img src={article_img_url} width="700"></img>
       <p>Votes: {votes}</p>
       <p>Created at: {created_at}</p>
       <p>Comments: {comment_count}</p>
