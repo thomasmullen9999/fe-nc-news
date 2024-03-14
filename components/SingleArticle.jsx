@@ -2,11 +2,11 @@ import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { changeVotesByArticleId, fetchArticleById, fetchCommentsByArticleId } from '../apis';
 import CommentCard from './CommentCard';
+import CommentsList from './CommentsList';
 
 
 const SingleArticle = ({article}) => {
   const [currentArticle, setCurrentArticle] = useState([]);
-  const [comments, setComments] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const { id } = useParams();
   
@@ -16,13 +16,6 @@ const SingleArticle = ({article}) => {
     .then(({article}) => {
       setCurrentArticle(article);
       setIsLoading(false);
-    })
-  }, [id])
-
-  useEffect(() => {
-    fetchCommentsByArticleId(id)
-    .then(({comments}) => {
-      setComments(comments);
     })
   }, [id])
 
@@ -44,26 +37,19 @@ const SingleArticle = ({article}) => {
   }
   else {
     return (
-      <div className= "single-article">
-        <h4>{title}</h4>
+      <article className= "single-article">
+        <h2>{title}</h2>
         <p>Topic: {topic}</p>
         <p>Author: {author}</p>
-        <img src={article_img_url} width="500"></img>
+        <img src={article_img_url} width="900"></img>
         <p>{body}</p>
         <p>Votes: {votes}</p>
         <button value={article_id} onClick={handleVoteClick}>
           Add vote
         </button>
         <p>Created at: {created_at}</p>
-        <div id="comments-section">
-          <h2>Comments</h2>
-          <ul>
-            {comments.map((comment) => {
-              return <CommentCard comment = {comment} key = {comment.comment_id}/>
-            })}
-          </ul>
-        </div>
-      </div>
+        <CommentsList id = {id} />
+      </article>
       
     );
   }

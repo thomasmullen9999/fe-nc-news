@@ -63,7 +63,8 @@ button:focus-visible {
     color: #747bff;
   }
   button {
-    background-color: #f9f9f9;
+    background-color: lightblue;
+    margin: 8px;
   }
 }
 
@@ -73,6 +74,7 @@ button:focus-visible {
   border-radius: 5px;
   border-color: black;
   margin-top: 20px;
+  padding: 20px;
 }
 
 .comment-card {
@@ -81,4 +83,14 @@ button:focus-visible {
   border-radius: 5px;
   border-color: grey;
   margin-top: 20px;
+}
+
+.comment-post-box {
+  width: 85vw;
+  height: 50px;
+  padding: 5px;
+  border-style: solid;
+  border-width: 1px;
+  border-radius: 5px;
+  border-color: black;
 }
