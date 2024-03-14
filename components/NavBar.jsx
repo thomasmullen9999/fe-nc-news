@@ -9,6 +9,7 @@ const NavBar = () => {
           <Link to="/"><Button>Home</Button></Link>
           <Link to="/articles"><Button>Articles</Button></Link>  
           <Link to="/users"><Button>Users</Button></Link>    
+          <Link to="/topics"><Button>Topics</Button></Link>    
       </ButtonGroup>
     </nav>
   );
