@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import PreviewArticleCard from './PreviewArticleCard';
 import { fetchArticles } from '../apis';
-import { useParams } from 'react-router-dom';
 
 const ArticlesList = () => {
   const [articles, setArticles] = useState([]);

@@ -65,7 +65,7 @@ const CommentsList = (props) => {
       <br></br>
       <ul>
         {comments.map((comment) => {
-          return <CommentCard comment = {comment} key = {comment.comment_id}/>
+          return <CommentCard comments = {comments} setComments = {setComments} comment = {comment} key = {comment.comment_id}/>
         })}
       </ul>
     </div>
