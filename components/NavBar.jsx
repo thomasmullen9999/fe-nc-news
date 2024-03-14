@@ -7,7 +7,8 @@ const NavBar = () => {
     <nav>
       <ButtonGroup>
           <Link to="/"><Button>Home</Button></Link>
-          <Link to="/articles"><Button>Articles</Button></Link>        
+          <Link to="/articles"><Button>Articles</Button></Link>  
+          <Link to="/users"><Button>Users</Button></Link>    
       </ButtonGroup>
     </nav>
   );

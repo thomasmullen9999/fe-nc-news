@@ -10,6 +10,12 @@ export const fetchArticles = () => {
   })
 };
 
+export const fetchUsers = () => {
+  return newsApi.get("/users").then((response) => {
+    return response.data;
+  })
+};
+
 export const fetchArticleById = (id) => {
   return newsApi.get(`/articles/${id}`).then((response) => {
     return response.data;
@@ -32,6 +38,13 @@ export const changeVotesByArticleId = (id) => {
 
 export const addNewCommentByArticleId = (id, newComment) => {
   return newsApi.post(`/articles/${id}/comments`, newComment)
+  .then((response) => {
+    return response.data;
+  })
+}
+
+export const deleteCommentById = (id) => {
+  return newsApi.delete(`/comments/${id}`)
   .then((response) => {
     return response.data;
   })
