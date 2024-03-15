@@ -5,10 +5,11 @@ import { UserContext } from '../contexts/User';
 const Header = () => {
   const { loggedInUser } = useContext(UserContext)
   return (
-    <div>
+    <header>
       <h1>Welcome to NC News!</h1>
-      <p>Hi, {loggedInUser.username}</p>
-    </div>
+      <h2>Hi, <strong>{loggedInUser.username}</strong>&emsp;<img src={loggedInUser.avatar_url} alt="A Mr. Men character representing your username." width='50px'></img></h2>
+      
+    </header>
   );
 };
 

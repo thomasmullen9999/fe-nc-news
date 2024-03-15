@@ -4,8 +4,8 @@ const ErrorComponent = (props) => {
   const { message } = props;
   if (message) {
     return (
-      <div>
-        <h2>Error: {message}</h2>
+      <div id="error-message">
+        <h3>Error: {message}</h3>
       </div>
     );
     }

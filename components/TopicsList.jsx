@@ -25,13 +25,14 @@ const TopicsList = () => {
   }
   else {
     return (
-      <div id="topics-list">
+      <section id="topics-list">
+        <h2>Topics</h2>
         <ul>
           {topics.map((topic) => {
             return <TopicCard topic = {topic} key={topic.slug}/>
           })}
         </ul>
-      </div>
+      </section>
     );
 };
 }
