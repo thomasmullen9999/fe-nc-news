@@ -3,6 +3,7 @@ import PreviewArticleCard from './PreviewArticleCard';
 import { fetchArticles, fetchArticlesByTopic } from '../apis';
 import { useSearchParams } from 'react-router-dom';
 import { Dropdown, DropdownButton } from 'react-bootstrap';
+import ErrorPage from './ErrorPage';
 
 const ArticlesList = () => {
   const [articles, setArticles] = useState([]);
@@ -10,15 +11,9 @@ const ArticlesList = () => {
   const [searchParams, setSearchParams] = useSearchParams();
   const [order, setOrder] = useState('desc')
   const [sortBy, setSortBy] = useState('created_at')
+  const [error, setError] = useState(null);
 
   const topicQuery = searchParams.get("topic");
-
-/*   useEffect(() => {
-    fetchArticlesByTopic(topicQuery).then(({articles}) => {
-      setArticles(articles);
-    });
-  }, [topicQuery]); */
-
 
   useEffect(() => {
     setIsLoading(true);
@@ -26,8 +21,20 @@ const ArticlesList = () => {
     .then(({articles}) => {
       setArticles(articles);
       setIsLoading(false);
+      setError(null);
+    })
+    .catch((err) => {
+      setError(err)
     })
   }, [topicQuery, sortBy, order])
+
+
+
+  if (error) {
+    return <>
+      <ErrorPage />
+    </>
+  }
 
   if (isLoading) {
     return (
