@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 
 const NavBar = () => {
   return (
-    <nav>
+    <nav id="nav-bar">
       <ButtonGroup>
           <Link to="/"><Button>Home</Button></Link>
           <Link to="/articles"><Button>Articles</Button></Link>  

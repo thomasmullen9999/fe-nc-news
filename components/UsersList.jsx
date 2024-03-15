@@ -24,13 +24,14 @@ const UsersList = () => {
   }
   else {
     return (
-      <div id="users-list">
+      <section id="users-list">
+        <h2>Users</h2>
         <ul>
           {users.map((user) => {
             return <UserCard user = {user} key={user.username}/>
           })}
         </ul>
-      </div>
+      </section>
     );
 };
 }

@@ -11,6 +11,9 @@ const CommentsList = (props) => {
 
   function handleCommentSubmit(event) {
     event.preventDefault();
+    document.getElementById('post-comment-button').disabled = true;
+
+    
     const newComment = {
       username: 'weegembump',
       body: body
@@ -22,6 +25,8 @@ const CommentsList = (props) => {
       const newComments = [postedComment, ...comments]
       setComments(newComments);
       setError(null)
+      document.getElementById('post-comment-button').disabled = false;
+      document.getElementById('comment-post-box').value = '';
     })
     .catch((err) => {
       setError({ err });
@@ -42,25 +47,24 @@ const CommentsList = (props) => {
   let errorMessage = ''
 
   if (error) {
-    errorMessage = error.err.message;
+    errorMessage = `${error.err.message}. Did you try to post an empty comment?`;
   }
 
   return (
-    <div id="comments-list"> 
+    <section id="comments-list"> 
       <h2>Comments</h2>
       <ErrorComponent message={errorMessage}/>
-      <br></br>
       <form id="post-comment" onSubmit={handleCommentSubmit}>
         <label htmlFor='body'>Post a comment!</label>
         <input
-          className='comment-post-box'
+          id='comment-post-box'
           type="text"
           name="body"
           placeholder="Comment..."
           value={body}
           onChange={handleBodyChange}
         />
-        <button type="submit">Post</button>
+        <button id="post-comment-button" type="submit">Post</button>
       </form>
       <br></br>
       <ul>
@@ -68,7 +72,7 @@ const CommentsList = (props) => {
           return <CommentCard comments = {comments} setComments = {setComments} comment = {comment} key = {comment.comment_id}/>
         })}
       </ul>
-    </div>
+    </section>
   );
 };
 

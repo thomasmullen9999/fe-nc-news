@@ -4,6 +4,7 @@ import { changeVotesByArticleId, fetchArticleById, fetchCommentsByArticleId } fr
 import CommentsList from './CommentsList';
 import { useContext } from 'react';
 import { UserContext } from '../contexts/User';
+import ErrorComponent from './ErrorComponent';
 
 
 const SingleArticle = ({article}) => {
@@ -11,6 +12,7 @@ const SingleArticle = ({article}) => {
   const [isLoading, setIsLoading] = useState(true);
   const { id } = useParams();
   const { loggedInUser } = useContext(UserContext)
+  const [error, setError] = useState(null)
   
   useEffect(() => {
     setIsLoading(true);
@@ -23,12 +25,23 @@ const SingleArticle = ({article}) => {
 
   function handleVoteClick() {
     // non-optimistic rendering approach
-    changeVotesByArticleId(id).then(({article}) => {
+    changeVotesByArticleId(id)
+    .then(({article}) => {
       setCurrentArticle(article);
+      setError(null)
+    })
+    .catch((err) => {
+      setError({ err });
     });
   }
 
   const { article_id, topic, title, author, created_at, votes, article_img_url, body } = currentArticle;
+
+  let errorMessage = ''
+
+  if (error) {
+    errorMessage = error.err.message;
+  }
 
   if (isLoading) {
     return (
@@ -40,23 +53,21 @@ const SingleArticle = ({article}) => {
   else {
     return (
     <>
-      <h2>Hello, {loggedInUser.username}</h2>
       <article className= "single-article">
         <h2>{title}</h2>
-        <p>Topic: {topic}</p>
-        <p>Author: {author}</p>
-        <img src={article_img_url} width="900"></img>
+        <p>Topic: {topic}</p><p>Published by: {author}</p>
+        <img src={article_img_url} width="85%" alt="A background related to the article's topic"></img>
         <p>{body}</p>
-        <p>Votes: {votes}</p>
-        <button value={article_id} onClick={handleVoteClick}>
-          Add vote
-        </button>
+        <p>
+          Votes: {votes}&emsp;<button value={article_id} onClick={handleVoteClick}>
+            Add vote
+          </button>
+        </p>
+        <ErrorComponent message={errorMessage}/>
         <p>Created at: {created_at}</p>
         <CommentsList id = {id} />
       </article>
     </>
-
-      
     );
   }
 };

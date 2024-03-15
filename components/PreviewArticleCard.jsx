@@ -11,11 +11,9 @@ const PreviewArticleCard = ({article}) => {
     <div className= "preview-article-card">
       <h3>{title}</h3>
       <p>Topic: {topic}</p>
-      <p>Author: {author}</p>
-      <img src={article_img_url} width="700"></img>
-      <p>Votes: {votes}</p>
-      <p>Created at: {created_at}</p>
-      <p>Comments: {comment_count}</p>
+      <img src={article_img_url} width="80%" alt="A background related to the article's topic"></img>
+      <p>Published by {author} at {created_at}</p>
+      <p><strong>Votes {votes}</strong>&emsp;&emsp;&emsp;<strong>Comments: {comment_count}</strong></p>
       <Link to={fullArticleLink}><Button>View Full Article</Button></Link> 
     </div>
   );

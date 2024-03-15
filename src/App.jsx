@@ -14,7 +14,9 @@ import TopicsList from '../components/TopicsList'
 
 function App() {
   const [loggedInUser, setLoggedInUser] = useState({
-    username: 'weegembump'
+    username: 'weegembump',
+    name: 'Gemma Bump',
+    avatar_url: 'https://vignette.wikia.nocookie.net/mrmen/images/7/7e/MrMen-Bump.png/revision/latest?cb=20180123225553'
   })
 
   return (
