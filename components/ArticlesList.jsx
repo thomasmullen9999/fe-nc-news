@@ -45,7 +45,7 @@ const ArticlesList = () => {
   }
   else {
     return (
-      <main id="articles-list">
+      <main>
         <h2>Articles</h2>
 
         <label htmlFor="sort-by">Sort by:</label>
@@ -63,11 +63,11 @@ const ArticlesList = () => {
           <option value="desc">Descending</option>
         </select>
 
-        <ul>
+        <div id="articles-list">
           {articles.map((article) => {
             return <PreviewArticleCard article = {article} key={article.article_id}/>
           })}
-        </ul>
+        </div>
       </main>
     );
 };

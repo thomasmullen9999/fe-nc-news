@@ -5,6 +5,7 @@ import CommentsList from './CommentsList';
 import { useContext } from 'react';
 import { UserContext } from '../contexts/User';
 import ErrorComponent from './ErrorComponent';
+import ErrorPage from './ErrorPage';
 
 
 const SingleArticle = ({article}) => {
@@ -21,6 +22,10 @@ const SingleArticle = ({article}) => {
       setCurrentArticle(article);
       setIsLoading(false);
     })
+    .catch((err) => {
+      setIsLoading(false);
+      setError({ err });
+    });
   }, [id])
 
   function handleVoteClick() {
@@ -51,24 +56,32 @@ const SingleArticle = ({article}) => {
     )
   }
   else {
-    return (
-    <>
-      <article className= "single-article">
-        <h2>{title}</h2>
-        <p>Topic: {topic}</p><p>Published by: {author}</p>
-        <img src={article_img_url} width="85%" alt="A background related to the article's topic"></img>
-        <p>{body}</p>
-        <p>
-          Votes: {votes}&emsp;<button value={article_id} onClick={handleVoteClick}>
-            Add vote
-          </button>
-        </p>
-        <ErrorComponent message={errorMessage}/>
-        <p>Created at: {created_at}</p>
-        <CommentsList id = {id} />
-      </article>
+    if (!error) {
+      return (
+        <>
+          <article className= "single-article">
+            <h2>{title}</h2>
+            <p>Topic: {topic}</p><p>Published by: {author}</p>
+            <img src={article_img_url} width="85%" alt="A background related to the article's topic"></img>
+            <p>{body}</p>
+            <p>
+              Votes: {votes}&emsp;<button value={article_id} onClick={handleVoteClick}>
+                Add vote
+              </button>
+            </p>
+            <ErrorComponent message={errorMessage}/>
+            <p>Created at: {created_at}</p>
+            <br></br>
+            <CommentsList id = {id} />
+          </article>
+        </>
+        );
+    }
+    // if the article is not found (i.e. invalid article ID number) return the error page instead
+    else return <>
+      <ErrorPage />
     </>
-    );
+    
   }
 };
 

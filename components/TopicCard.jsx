@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 const TopicCard = ({topic}) => {
 
   const { slug, description } = topic;
-  const topicsLink = `/articles?topic=${slug}`
+  const topicsLink = `/articles/?topic=${slug}`
 
   return (
     <div className= "topic-card">

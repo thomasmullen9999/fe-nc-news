@@ -12,6 +12,7 @@ const CommentsList = (props) => {
   function handleCommentSubmit(event) {
     event.preventDefault();
     document.getElementById('post-comment-button').disabled = true;
+    setBody('');
 
     
     const newComment = {
@@ -21,15 +22,15 @@ const CommentsList = (props) => {
     
     addNewCommentByArticleId(id, newComment)
     .then(({comment}) => {
+      document.getElementById('post-comment-button').disabled = false;
       const postedComment = comment;
       const newComments = [postedComment, ...comments]
       setComments(newComments);
       setError(null)
-      document.getElementById('post-comment-button').disabled = false;
-      document.getElementById('comment-post-box').value = '';
     })
     .catch((err) => {
       setError({ err });
+      document.getElementById('post-comment-button').disabled = false;
     });
   }
 
@@ -56,6 +57,8 @@ const CommentsList = (props) => {
       <ErrorComponent message={errorMessage}/>
       <form id="post-comment" onSubmit={handleCommentSubmit}>
         <label htmlFor='body'>Post a comment!</label>
+        <br></br>
+        <br></br>
         <input
           id='comment-post-box'
           type="text"
@@ -67,11 +70,10 @@ const CommentsList = (props) => {
         <button id="post-comment-button" type="submit">Post</button>
       </form>
       <br></br>
-      <ul>
+      
         {comments.map((comment) => {
           return <CommentCard comments = {comments} setComments = {setComments} comment = {comment} key = {comment.comment_id}/>
         })}
-      </ul>
     </section>
   );
 };

@@ -28,6 +28,7 @@ body {
   place-items: center;
   min-width: 320px;
   min-height: 100vh;
+  
 }
 
 h1 {
@@ -73,7 +74,7 @@ button:focus-visible {
   border-width: 3px;
   border-radius: 5px;
   border-color: black;
-  margin-top: 20px;
+  margin-top: 50px;
   padding: 20px;
   box-shadow: 5px 5px 5px grey;
 }
@@ -92,22 +93,14 @@ button:focus-visible {
 }
 
 #comment-post-box {
-  width: 80%;
+  width: 75%;
   height: 50px;
   padding: 10px;
   border-style: solid;
   border-width: 1px;
   border-color: black;
-}
-
-.user-card {
-  border-style: solid;
-  border-width: 3px;
   border-radius: 5px;
-  border-color: grey;
-  margin-top: 20px;
-  box-shadow: 5px 5px 5px grey;
-  padding: 20px;
+  margin-right: 15px;
 }
 
 .topic-card {
@@ -135,3 +128,39 @@ h2 {
   font-size: 20px;
 }
 
+#users-list {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-evenly;
+}
+
+.user-card {
+  border-style: solid;
+  border-width: 3px;
+  border-radius: 5px;
+  border-color: grey;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  margin-left: 16px;
+  margin-right: 16px;
+  box-shadow: 5px 5px 5px grey;
+  padding: 20px;
+  width: 25%;
+  
+}
+
+.user-card img {
+  width: 30%;
+}
+
+#app {
+  background-color: white;
+  border-style: solid;
+  border-width: 3px;
+  border-radius: 30px;
+  border-color: black;
+  margin-top: 20px;
+  padding: 50px;
+}

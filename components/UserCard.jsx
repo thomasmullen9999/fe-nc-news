@@ -12,8 +12,8 @@ const UserCard = ({user}) => {
   return (
     <div className= "user-card">
       <h3>{username}</h3>
-      <h3>{name}</h3>
-      <img src={avatar_url} width="30%" alt={imageText}></img>
+      <p><strong>{name}</strong></p>
+      <img src={avatar_url} alt={imageText}></img>
       <button onClick={() => 
         {setLoggedInUser(user)}}>Log in</button>
     </div>
