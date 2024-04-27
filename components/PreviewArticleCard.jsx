@@ -12,8 +12,8 @@ const PreviewArticleCard = ({article}) => {
       <h3>{title}</h3>
       <p>Topic: {topic}</p>
       <img src={article_img_url} width="80%" alt="A background related to the article's topic"></img>
-      <p>Published by {author} at {created_at}</p>
-      <p><strong>Votes {votes}</strong>&emsp;&emsp;&emsp;<strong>Comments: {comment_count}</strong></p>
+      <p>Published by <strong>{author}</strong> at <strong>{created_at}</strong></p>
+      <p><strong>&#128077; {votes}</strong>&emsp;&emsp;&emsp;<strong>Comments: {comment_count}</strong></p>
       <Link to={fullArticleLink}><Button>View Full Article</Button></Link> 
     </div>
   );

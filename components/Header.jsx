@@ -6,8 +6,9 @@ const Header = () => {
   const { loggedInUser } = useContext(UserContext)
   return (
     <header>
-      <h1>Welcome to NC News!</h1>
-      <h2>Hi, <strong>{loggedInUser.username}</strong>&emsp;<img src={loggedInUser.avatar_url} alt="A Mr. Men character representing your username." width='50px'></img></h2>
+      <h1>NC News</h1>
+      <h2>Hi, <strong>{loggedInUser.name}</strong></h2>
+      <img src={loggedInUser.avatar_url} alt="A Mr. Men character representing your username." width={50} height={50}></img>
       
     </header>
   );

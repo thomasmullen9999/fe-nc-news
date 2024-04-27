@@ -5,14 +5,16 @@ import { Link } from 'react-router-dom';
 const TopicCard = ({topic}) => {
 
   const { slug, description } = topic;
-  const topicsLink = `/articles/?topic=${slug}`
+  const topicsLink = `/articles?topic=${slug}`
 
   return (
-    <div className= "topic-card">
-   	<h3>{slug}</h3>
-    <p>{description}</p>
-    <Link to={topicsLink}><Button>View related articles</Button></Link>
-    </div>
+    <li>
+      <div className= "topic-card">
+      <h3>{slug}</h3>
+      <p>{description}</p>
+      <Link to={topicsLink}><Button>View related articles</Button></Link>
+      </div>
+    </li>
   );
 };
 

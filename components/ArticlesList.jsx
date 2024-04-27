@@ -48,16 +48,17 @@ const ArticlesList = () => {
       <main>
         <h2>Articles</h2>
 
-        <label htmlFor="sort-by">Sort by:</label>
+        <label htmlFor="sort-by">Sort By:</label>
         &emsp;
         <select name="sort-by" id="sort-by" value={sortBy} onChange={(event) => {setSortBy(event.target.value)}}>
           <option value="date">Date</option>
           <option value="comment_count">Comment Count</option>
           <option value="votes">Votes</option>
         </select>
-        &emsp;
+        <br></br>
         <label htmlFor="order">Order:</label>
         &emsp;
+        &nbsp;
         <select name="order" id="order" value={order} onChange={(event) => {setOrder(event.target.value)}}>
           <option value="asc">Ascending</option>
           <option value="desc">Descending</option>

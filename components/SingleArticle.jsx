@@ -65,12 +65,13 @@ const SingleArticle = ({article}) => {
             <img src={article_img_url} width="85%" alt="A background related to the article's topic"></img>
             <p>{body}</p>
             <p>
-              Votes: {votes}&emsp;<button value={article_id} onClick={handleVoteClick}>
-                Add vote
+              &#128077; {votes}&emsp;
+              <button value={article_id} onClick={handleVoteClick}>
+                Upvote
               </button>
             </p>
             <ErrorComponent message={errorMessage}/>
-            <p>Created at: {created_at}</p>
+            <p>Created on {created_at}</p>
             <br></br>
             <CommentsList id = {id} />
           </article>

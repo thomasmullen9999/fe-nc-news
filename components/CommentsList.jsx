@@ -56,20 +56,16 @@ const CommentsList = (props) => {
       <h2>Comments</h2>
       <ErrorComponent message={errorMessage}/>
       <form id="post-comment" onSubmit={handleCommentSubmit}>
-        <label htmlFor='body'>Post a comment!</label>
-        <br></br>
-        <br></br>
         <input
           id='comment-post-box'
           type="text"
           name="body"
-          placeholder="Comment..."
+          placeholder="Add a new comment..."
           value={body}
           onChange={handleBodyChange}
         />
         <button id="post-comment-button" type="submit">Post</button>
       </form>
-      <br></br>
       
         {comments.map((comment) => {
           return <CommentCard comments = {comments} setComments = {setComments} comment = {comment} key = {comment.comment_id}/>

@@ -27,9 +27,8 @@ const UsersList = () => {
       <>
         <h2>Users</h2>
         <section id="users-list">
-          <br></br>
             {users.map((user) => {
-              return <UserCard user = {user} key={user.username}/>
+              return <li><UserCard user = {user} key={user.username}/></li>
             })}
         </section>
       </>
