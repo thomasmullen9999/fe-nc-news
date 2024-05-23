@@ -56,15 +56,8 @@ const CommentsList = (props) => {
       <h2>Comments</h2>
       <ErrorComponent message={errorMessage}/>
       <form id="post-comment" onSubmit={handleCommentSubmit}>
-        <input
-          id='comment-post-box'
-          type="text"
-          name="body"
-          placeholder="Add a new comment..."
-          value={body}
-          onChange={handleBodyChange}
-        />
-        <button id="post-comment-button" type="submit">Post</button>
+      <textarea id="comment-post-box" rows="4" cols="65" wrap="soft" placeholder="Add a comment..."> </textarea>
+      <button id="post-comment-button" type="submit">Post</button>
       </form>
       
         {comments.map((comment) => {

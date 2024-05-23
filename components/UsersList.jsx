@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { fetchUsers } from '../apis';
 import UserCard from './UserCard';
+import { RotatingLines } from 'react-loader-spinner';
 
 const UsersList = () => {
   const [users, setUsers] = useState([]);
@@ -19,6 +20,14 @@ const UsersList = () => {
     return (
       <>
       <h1>Loading users...</h1>
+      <p>This may take a little while if you've just opened the website!</p>
+        <RotatingLines
+        strokeColor="grey"
+        strokeWidth="5"
+        animationDuration="0.75"
+        width="96"
+        visible={true}
+        />
       </>
     )
   }

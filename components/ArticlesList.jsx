@@ -4,6 +4,7 @@ import { fetchArticles, fetchArticlesByTopic } from '../apis';
 import { useSearchParams } from 'react-router-dom';
 import { Dropdown, DropdownButton } from 'react-bootstrap';
 import ErrorPage from './ErrorPage';
+import { RotatingLines } from "react-loader-spinner";
 
 const ArticlesList = () => {
   const [articles, setArticles] = useState([]);
@@ -39,7 +40,15 @@ const ArticlesList = () => {
   if (isLoading) {
     return (
       <>
-      <h1>Loading articles...</h1>
+        <h1>Loading articles...</h1>
+        <p>This may take a little while if you've just opened the website!</p>
+        <RotatingLines
+        strokeColor="grey"
+        strokeWidth="5"
+        animationDuration="0.75"
+        width="96"
+        visible={true}
+        />
       </>
     )
   }
@@ -55,10 +64,7 @@ const ArticlesList = () => {
           <option value="comment_count">Comment Count</option>
           <option value="votes">Votes</option>
         </select>
-        <br></br>
-        <label htmlFor="order">Order:</label>
         &emsp;
-        &nbsp;
         <select name="order" id="order" value={order} onChange={(event) => {setOrder(event.target.value)}}>
           <option value="asc">Ascending</option>
           <option value="desc">Descending</option>

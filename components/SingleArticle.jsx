@@ -40,7 +40,11 @@ const SingleArticle = ({article}) => {
     });
   }
 
-  const { article_id, topic, title, author, created_at, votes, article_img_url, body } = currentArticle;
+  const { article_id, topic, title, author, votes, article_img_url, body } = currentArticle;
+  let { created_at } = currentArticle
+  if (created_at) {
+    created_at = new Date(created_at).toString()
+  }
 
   let errorMessage = ''
 
