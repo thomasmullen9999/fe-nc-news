@@ -35,11 +35,11 @@ const TopicsList = () => {
       <section id="topics-list">
         <h2>Topics</h2>
         <h3>Select a topic to browse related articles...</h3>
-        <ul>
-          {topics.map((topic) => {
-            return <TopicCard topic={topic} key={topic.slug} />;
-          })}
-        </ul>
+        <div className="topics-grid">
+          {topics.map((topic) => (
+            <TopicCard topic={topic} key={topic.slug} />
+          ))}
+        </div>
       </section>
     );
   }

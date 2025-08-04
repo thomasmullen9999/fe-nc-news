@@ -4,46 +4,12 @@ import CommentCard from "./CommentCard";
 import ErrorComponent from "./ErrorComponent";
 import { UserContext } from "../contexts/User";
 
-const CommentsList = (props) => {
-  const { id } = props;
+const CommentsList = ({ id }) => {
   const [comments, setComments] = useState([]);
   const [body, setBody] = useState("");
   const [error, setError] = useState(null);
+  const [isPosting, setIsPosting] = useState(false);
   const { loggedInUser } = useContext(UserContext);
-
-  function handleCommentSubmit(event) {
-    event.preventDefault();
-    document.getElementById("post-comment-button").disabled = true;
-    setBody("new cmmment");
-
-    const username = loggedInUser.username;
-    const commentBox = document.getElementById("comment-post-box");
-    const body = commentBox.value;
-
-    const newComment = {
-      username,
-      body,
-    };
-
-    console.log(newComment);
-
-    addNewCommentByArticleId(id, newComment)
-      .then(({ comment }) => {
-        document.getElementById("post-comment-button").disabled = false;
-        const postedComment = comment;
-        const newComments = [postedComment, ...comments];
-        setComments(newComments);
-        setError(null);
-      })
-      .catch((err) => {
-        setError({ err });
-        document.getElementById("post-comment-button").disabled = false;
-      });
-  }
-
-  function handleBodyChange(event) {
-    setBody(event.target.value);
-  }
 
   useEffect(() => {
     fetchCommentsByArticleId(id).then(({ comments }) => {
@@ -51,43 +17,63 @@ const CommentsList = (props) => {
     });
   }, [id]);
 
-  let errorMessage = "";
+  const handleCommentSubmit = (event) => {
+    event.preventDefault();
+    if (!body.trim()) {
+      setError({ err: { message: "Comment body cannot be empty" } });
+      return;
+    }
 
-  if (error) {
-    errorMessage = `${error.err.message}. Did you try to post an empty comment?`;
-  }
+    setIsPosting(true);
+    const newComment = {
+      username: loggedInUser.username,
+      body,
+    };
+
+    addNewCommentByArticleId(id, newComment)
+      .then(({ comment }) => {
+        setComments([comment, ...comments]);
+        setBody("");
+        setError(null);
+        setIsPosting(false);
+      })
+      .catch((err) => {
+        setError({ err });
+        setIsPosting(false);
+      });
+  };
 
   return (
     <section id="comments-list">
       <h2>Comments ({comments.length})</h2>
-      <h3>Add New Comment...</h3>
-      <ErrorComponent message={errorMessage} />
-      <form id="post-comment" onSubmit={handleCommentSubmit}>
+      <h3>Add Comment</h3>
+      <ErrorComponent message={error ? `${error.err.message}.` : ""} />
+
+      <form className="comment-form" onSubmit={handleCommentSubmit}>
         <textarea
-          id="comment-post-box"
+          className="comment-textarea"
           rows="4"
-          cols="65"
-          wrap="soft"
-          placeholder="Add a comment..."
-        >
-          {" "}
-        </textarea>
-        <br></br>
-        <button id="post-comment-button" type="submit">
-          Post
-        </button>
+          value={body}
+          onChange={(e) => setBody(e.target.value)}
+          placeholder="Write your comment..."
+        />
+        <div className="comment-form-footer">
+          <button type="submit" disabled={isPosting}>
+            {isPosting ? "Posting..." : "Post"}
+          </button>
+        </div>
       </form>
 
-      {comments.map((comment) => {
-        return (
+      <div className="comment-cards-container">
+        {comments.map((comment) => (
           <CommentCard
+            key={comment.comment_id}
+            comment={comment}
             comments={comments}
             setComments={setComments}
-            comment={comment}
-            key={comment.comment_id}
           />
-        );
-      })}
+        ))}
+      </div>
     </section>
   );
 };
